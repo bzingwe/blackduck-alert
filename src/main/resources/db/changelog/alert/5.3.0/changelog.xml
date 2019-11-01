@@ -3,4 +3,5 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
     <include file="changelog-update-stored-procedures.xml" relativeToChangelogFile="true"/>
     <include file="changelog-distribution-job.xml" relativeToChangelogFile="true"/>
+    <include file="changelog-user-management.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="psantos" id="2019-11-01-11-00-44-778-1">
+        <sql dbms="h2">
+            CALL REGISTER_COMPONENT('component_users')
+        </sql>
+        <sql dbms="h2" stripComments="true">
+            CALL REMOVE_ALL_PERMISSIONS('ALERT_JOB_MANAGER','component_authentication', 'GLOBAL');
+            CALL REMOVE_ALL_PERMISSIONS('ALERT_USER','component_authentication', 'GLOBAL');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -10,7 +10,7 @@ import {
     USER_MANAGEMENT_ROLE_SAVING
 } from 'store/actions/types'
 import * as ConfigRequestBuilder from "util/configurationRequestBuilder";
-import { verifyLoginByStatus } from "session";
+import { verifyLoginByStatus } from "store/actions/session";
 
 function fetchingAllRoles() {
     return {
@@ -109,7 +109,7 @@ export function fetchRoles() {
     };
 }
 
-export function saveDistributionJob(roleName) {
+export function createNewRole(roleName) {
     return (dispatch, getState) => {
         dispatch(savingRole());
         const { csrfToken } = getState().session;

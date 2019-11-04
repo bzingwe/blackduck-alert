@@ -32,6 +32,7 @@ public class UserManagementDescriptor extends ComponentDescriptor {
     public static final String USER_MANAGEMENT_LABEL = "User Management";
     public static final String USER_MANAGEMENT_URL = "users";
     public static final String USER_MANAGEMENT_DESCRIPTION = "This page allows you to configure users and roles for Alert.";
+    public static final String USERS_COMPONENT_NAMESPACE = "users.UserManagement";
 
     @Autowired
     public UserManagementDescriptor(UserManagementDescriptorKey descriptorKey, UserManagementUIConfig componentUIConfig) {

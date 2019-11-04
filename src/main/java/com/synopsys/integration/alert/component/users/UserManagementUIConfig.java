@@ -28,14 +28,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.synopsys.integration.alert.common.descriptor.config.field.ConfigField;
-import com.synopsys.integration.alert.common.descriptor.config.ui.UIConfig;
+import com.synopsys.integration.alert.common.descriptor.config.ui.CustomUIConfig;
 
 @Component
-public class UserManagementUIConfig extends UIConfig {
+public class UserManagementUIConfig extends CustomUIConfig {
 
     @Autowired
     public UserManagementUIConfig() {
-        super(UserManagementDescriptor.USER_MANAGEMENT_LABEL, UserManagementDescriptor.USER_MANAGEMENT_DESCRIPTION, UserManagementDescriptor.USER_MANAGEMENT_URL);
+        super(UserManagementDescriptor.USER_MANAGEMENT_LABEL, UserManagementDescriptor.USER_MANAGEMENT_DESCRIPTION, UserManagementDescriptor.USER_MANAGEMENT_URL, UserManagementDescriptor.USERS_COMPONENT_NAMESPACE);
     }
 
     @Override

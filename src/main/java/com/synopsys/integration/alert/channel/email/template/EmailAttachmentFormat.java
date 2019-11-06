@@ -1,5 +1,5 @@
 /**
- * alert-database
+ * blackduck-alert
  *
  * Copyright (c) 2019 Synopsys, Inc.
  *
@@ -20,13 +20,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.synopsys.integration.alert.database.provider.project;
+package com.synopsys.integration.alert.channel.email.template;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+public enum EmailAttachmentFormat {
+    NONE,
+    JSON,
+    XML,
+    CSV;
 
-import java.util.List;
-
-public interface ProviderUserProjectRelationRepository extends JpaRepository<ProviderUserProjectRelation, ProviderUserProjectRelationPK> {
-    List<ProviderUserProjectRelation> findByProviderProjectId(Long providerProjectId);
+    public static EmailAttachmentFormat getValueSafely(String name) {
+        try {
+            return EmailAttachmentFormat.valueOf(name);
+        } catch (Exception e) {
+            return NONE;
+        }
+    }
 
 }

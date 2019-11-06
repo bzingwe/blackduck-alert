@@ -1,5 +1,5 @@
 /**
- * blackduck-alert
+ * alert-common
  *
  * Copyright (c) 2019 Synopsys, Inc.
  *
@@ -20,27 +20,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.synopsys.integration.alert.provider.blackduck.descriptor;
+package com.synopsys.integration.alert.common.util;
 
-import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.synopsys.integration.alert.common.descriptor.config.field.ConfigField;
-import com.synopsys.integration.alert.common.descriptor.config.ui.ProviderDistributionUIConfig;
-
 @Component
-public class BlackDuckDistributionUIConfig extends ProviderDistributionUIConfig {
+public class MarkupEncoderUtil {
 
-    @Autowired
-    public BlackDuckDistributionUIConfig(BlackDuckContent blackDuckContent) {
-        super(BlackDuckDescriptor.BLACKDUCK_LABEL, BlackDuckDescriptor.BLACKDUCK_URL, blackDuckContent);
-    }
+    public String encodeMarkup(Map<Character, String> itemsToReplace, String txt) {
+        StringBuilder newTxt = new StringBuilder(txt);
+        int cursor = 0;
+        char characterMemory = Character.MIN_VALUE;
+        while (cursor < newTxt.length()) {
+            char c = newTxt.charAt(cursor);
+            if (characterMemory == c) {
+                cursor++;
+                continue;
+            }
 
-    @Override
-    public List<ConfigField> createProviderDistributionFields() {
-        return List.of();
+            characterMemory = c;
+            String newString = itemsToReplace.get(c);
+            if (null != newString) {
+                newTxt.insert(cursor, newString);
+                cursor += newString.length();
+                newTxt.deleteCharAt(cursor);
+            } else {
+                cursor++;
+            }
+        }
+
+        return newTxt.toString();
     }
 
 }

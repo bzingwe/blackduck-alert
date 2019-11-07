@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -58,12 +59,15 @@ public class RoleActions {
     }
 
     public Collection<UserRoleModel> getRoles() {
-        return authorizationUtility.getRoles();
+        return authorizationUtility.getRoles().stream()
+                   //.map(this::convertUserRoleModel)
+                   .collect(Collectors.toList());
     }
 
     public Optional<UserRoleModel> getRole(String roleName) {
         return authorizationUtility.getRoles().stream()
                    .filter(role -> role.getName().equals(roleName))
+                   //.map(this::convertUserRoleModel)
                    .findFirst();
     }
 
@@ -104,4 +108,12 @@ public class RoleActions {
             authorizationUtility.deleteRole(userRole.get());
         }
     }
+
+    //    private RolePermissionsModel convertUserRoleModel(UserRoleModel userRoleModel) {
+    //        String roleName = userRoleModel.getName();
+    //        PermissionMatrixModel permissionModel = userRoleModel.getPermissions();
+    //        permissionModel.getPermissions().forEach();
+    //        RolePermissionsModel model = new RolePermissionsModel();
+    //    }
+
 }
